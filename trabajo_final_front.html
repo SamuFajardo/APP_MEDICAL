@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultorio Médico La Luz</title>
+    <link rel="stylesheet" href="estilo_principal.css">
+    <style>
+        body {
+            background-image: url('D-vXSs2W4AEzxKK.jpg_large');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        /* Agrega tu estilo personalizado aquí si es necesario */
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Consultorio Médico La Luz</h1>
+    </header>
+
+    <nav>
+        <button onclick="mostrarSeccion('Productos')">Catalogo de Productos</button>
+        <button onclick="mostrarSeccion('medicos')">Médicos</button>
+        <button onclick="mostrarSeccion('historia-clinica')">Historial de citas</button>
+        <button onclick="mostrarSeccion('citas')">Citas</button>
+    </nav>
+
+    <section id="Productos" style="display: none;">
+        <h2>Catálogo de Productos</h2>
+
+        <div class="producto">
+            <img src="alikal.jpg" alt="Producto 1">
+            <h3>Alikal Forte 600</h3>
+            <p>Sal efervescente con efecto antiácido y un comprimido de acción analgésica.</p>
+            <p class="precio" data-precio="600">600 $</p>
+            <button onclick="comprarProducto('Alikal Forte 600',600)">Comprar</button>
+        </div>
+    
+        <div class="producto">
+            <img src="ibu.jpg" alt="Producto 2">
+            <h3>Ibuprofeno 500</h3>
+            <p>Ibuprofeno es un compuesto no esteroideo derivado del ácido propiónico con marcadas propiedades antiinflamatorias, analgésicas, y antipirética</p>
+            <p class="precio" data-precio="1000">1000 $</p>
+            <button onclick="comprarProducto('Ibuprofeno 500', 1000)">Comprar</button>
+        </div>
+        <div class="producto">
+            <img src="cuellera.jpg" alt="Producto 3">
+            <h3>Collarin Cervical 500</h3>
+            <p>El collarín cervical ortopédico se usa para lesiones como traumatismos, esguinces, latigazos cervicales o artrosis</p>
+            <p class="precio" data-precio="5000">5000 $</p>
+            <button onclick="comprarProducto('Collarin Cervical',5000)">Comprar</button>
+        </div>
+        <div class="producto">
+            <img src="rodillera.jpg" alt="Producto 4">
+            <h3>Rodillera Ortopedica </h3>
+            <p>El uso de una rodillera ortopédica en lesiones de rodilla alivia el dolor, reduce la inflamación y aporta estabilidad</p>
+            <p class="precio" data-precio="5000">5000 $</p>
+            <button onclick="comprarProducto('Rodillera Ortopedica',5000)">Comprar</button>
+        </div>
+        <div class="producto">
+            <img src="aspirina.jpg" alt="Producto 5">
+            <h3>Aspirina Forte </h3>
+            <p>Uso general para bajar la fiebre y aliviar el dolor leve a moderado causado por dolor de cabeza,</p>
+            <p class="precio" data-precio="100">100 $</p>
+            <button onclick="comprarProducto('Aspirina',100) " >Comprar</button>
+        </div>
+        <div id="carrito">
+            <h2>Carrito de Compras</h2>
+            <ul id="lista-carrito"></ul>
+            <p>Cantidad de productos en el carrito: <span id="cantidad-productos">0</span></p>
+            <p>Total (con 12% de IVA): $<span id="total">0.00</span></p>
+            <button onclick="procederAlPago()">Proceder al Pago</button>
+        </div>
+    </section>
+
+    <section id="medicos" style="display: none;">
+        <h2>Médicos</h2>
+        <!-- Selector de médicos -->
+        <div id="selector-medicos">
+            <button onclick="mostrarMedico('odontologo')">Odontólogo</button>
+            <button onclick="mostrarMedico('psicologo')">Psicólogo</button>
+            <button onclick="mostrarMedico('oncologo')">Oncólogo</button>
+            <button onclick="mostrarMedico('neumologo')">Neumólogo</button>
+            <button onclick="mostrarMedico('quiropractico')">Quiropráctico</button>
+        </div>
+
+        <!-- Información dinámica de médicos -->
+        <div id="informacion-medicos">
+            <!-- Información del odontólogo -->
+            <div id="odontologo" class="medico">
+                <img src="doctor.jpg" alt="Odontólogo">
+                <h3>Dr. Juan Pérez</h3>
+                <p>Odontólogo</p>
+                <p>Edad: 40 años</p>
+                <p>Años de experiencia: 15 años</p>
+                <p>Telefono: +541154225410</p>
+            </div>
+
+            <!-- Información del psicólogo -->
+            <div id="psicologo" class="medico" style="display:none;">
+                <img src="dcotora.jpg" alt="Psicólogo">
+                <h3>Dra. María García</h3>
+                <p>Psicóloga</p>
+                <p>Edad: 35 años</p>
+                <p>Años de experiencia: 12 años</p>
+                <p>Telefono: +541154225593</p>
+            </div>
+
+            <!-- Información del oncólogo -->
+            <div id="oncologo" class="medico" style="display:none;">
+                <img src="docotora2.jpg" alt="Oncólogo">
+                <h3>Dra. Lorena Gutiérrez</h3>
+                <p>Oncólogo</p>
+                <p>Edad: 40 años</p>
+                <p>Años de experiencia: 5 años</p>
+                <p>Telefono: +541154445410</p>
+            </div>
+
+            <!-- Información del neumólogo -->
+            <div id="neumologo" class="medico" style="display:none;">
+                <img src="dosocotr.jpg" alt="Neumólogo">
+                <h3>Dra. Juan Balcare</h3>
+                <p>Neumólogo</p>
+                <p>Edad: 70 años</p>
+                <p>Años de experiencia: 22 años</p>
+                <p>Telefono: +541118245411</p>
+            </div>
+
+            <!-- Información del quiropráctico -->
+            <div id="quiropractico" class="medico" style="display:none;">
+                <img src="dcotor23.jpg" alt="Quiropráctico">
+                <h3>Dra. Daniel Bal</h3>
+                <p>Quiropráctico</p>
+                <p>Edad: 70 años</p>
+                <p>Años de experiencia: 22 años</p>
+                <p>Telefono: +541154225410</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="historia-clinica" style="display: none;">
+        <h2>Historia Clínica</h2>
+        <div id="lista-historial-citas"></div>
+    </section>
+
+    <section id="citas" style="display: none;">
+        <h2>Citas</h2>
+        <div id="lista-personas-citas">
+            <!-- Aquí se mostrarán los nombres de las personas que han agendado citas -->
+        </div>
+        <form id="formulario-cita" onsubmit="agendarCita(event)">
+            <label for="nombre">Nombre completo:</label>
+            <input type="text" id="nombre" required>
+        
+            <label for="edad">Edad:</label>
+            <input type="number" id="edad" required>
+        
+            <label for="peso">Peso:</label>
+            <input type="number" id="peso" required>
+        
+            <label for="altura">Altura:</label>
+            <input type="number" id="altura" required>
+        
+            <label for="sintomas">Descripción de síntomas:</label>
+            <textarea id="sintomas" required></textarea>
+        
+            <label for="medico">Selecciona un médico:</label>
+            <select id="medico" required>
+                <option value="odontologo">Odontólogo</option>
+                <option value="psicologo">Psicólogo</option>
+                <option value="oncologo">Oncólogo</option>
+                <option value="neumologo">Neumólogo</option>
+                <option value="quiropractico">Quiropráctico</option>
+            </select>
+        
+            <button type="submit">Agendar Cita</button>
+            <button type="button" onclick="continuarAgendando()">Seguir Agendando</button>
+        </form>
+        <div id="mensaje-confirmacion" style="display: none;">
+            <p>Su cita ha sido agendada para:</p>
+            <p id="info-cita"></p>
+        </div>
+
+
+    </section>
+
+    <script src="dinamico.js"></script>
+    <script>
+
+
+        var carrito = [];
+
+function comprarProducto(nombre, precio) {
+    carrito.push({ nombre: nombre, precio: precio });
+    mostrarCarrito();
+}
+
+function mostrarCarrito() {
+    var listaCarrito = document.getElementById('lista-carrito');
+    var cantidadProductosElemento = document.getElementById('cantidad-productos');
+    var totalElemento = document.getElementById('total');
+    var cantidadProductos = carrito.length;
+    var total = 0;
+
+    listaCarrito.innerHTML = '';
+
+    carrito.forEach(function (producto) {
+        var li = document.createElement('li');
+        li.textContent = producto.nombre + ' - $' + producto.precio;
+
+        var botonQuitar = document.createElement('button');
+        botonQuitar.textContent = 'Quitar';
+        botonQuitar.onclick = function () {
+            quitarProducto(producto);
+        };
+        li.appendChild(botonQuitar);
+
+        listaCarrito.appendChild(li);
+
+        total += parseFloat(producto.precio);
+    });
+
+    cantidadProductosElemento.textContent = cantidadProductos;
+    total = total + total * 0.12; // Agrega el 12% de IVA
+    totalElemento.textContent = total.toFixed(2);
+}
+
+function quitarProducto(producto) {
+    var index = carrito.findIndex(function (p) {
+        return p.nombre === producto.nombre;
+    });
+
+    if (index !== -1) {
+        carrito.splice(index, 1);
+    }
+
+    mostrarCarrito();
+}
+
+function procederAlPago() {
+    // Lógica para proceder al pago
+    alert('Redirigiendo al proceso de pago...');
+}
+
+function mostrarSeccion(seccion) {
+    var secciones = ['Productos', 'medicos', 'historia-clinica', 'citas'];
+    secciones.forEach(function (item) {
+        document.getElementById(item).style.display = 'none';
+    });
+
+    document.getElementById(seccion).style.display = 'block';
+}
+
+var historialClinico = {};
+
+var historialClinico = {};
+
+function agendarCita(event) {
+    event.preventDefault();
+
+    var nombre = document.getElementById('nombre').value;
+    var edad = document.getElementById('edad').value;
+    var peso = document.getElementById('peso').value;
+    var altura = document.getElementById('altura').value;
+    var sintomas = document.getElementById('sintomas').value;
+    var medicoSeleccionado = document.getElementById('medico').value;
+}
+    var cita = {
+        agendadoPor: nombre,
+        edad: edad,
+        peso: peso,
+        altura: altura,
+        sintomas: sintomas,
+        medico: medicoSeleccionado
+    };
+
+    var cita = {
+                agendadoPor: nombre,
+                edad: edad,
+                peso: peso,
+                altura: altura,
+                sintomas: sintomas,
+                medico: medicoSeleccionado
+            };
+
+            if (!historialClinico[nombre]) {
+                historialClinico[nombre] = [];
+            }
+            historialClinico[nombre].push(cita);
+
+            // Limpiar el formulario para una nueva cita
+            document.getElementById('formulario-cita').reset();
+
+            // Actualizar la lista en la pestaña "Historial de Citas"
+            actualizarListaHistorialCitas();
+
+            function actualizarListaHistorialCitas() {
+    var listaPersonasCitas = document.getElementById('lista-personas-citas');
+    listaPersonasCitas.innerHTML = '';
+            }
+    var nombresUnicos = [...new Set(Object.keys(historialClinico))];
+
+    nombresUnicos.forEach(nombre => {
+        var enlace = document.createElement('a');
+        enlace.textContent = nombre;
+        enlace.href = '#';
+        enlace.onclick = function () {
+            mostrarCitasPaciente(nombre);
+        };
+
+        var listItem = document.createElement('li');
+        listItem.appendChild(enlace);
+
+        listaPersonasCitas.appendChild(listItem);
+    });
+
+        function mostrarCitasPaciente(nombre) {
+    var listaHistorialCitas = document.getElementById('lista-historial-citas');
+    listaHistorialCitas.innerHTML = '';
+
+    if (historialClinico[nombre]) {
+        var historial = historialClinico[nombre];
+        historial.forEach(function (cita, index) {
+            var citaDiv = document.createElement('div');
+            citaDiv.innerHTML = `
+                <p><strong>Cita ${index + 1}:</strong></p>
+                <p>Agendado por: ${cita.agendadoPor}</p>
+                <p>Edad: ${cita.edad}, Peso: ${cita.peso}, Altura: ${cita.altura}</p>
+                <p>Síntomas: ${cita.sintomas}</p>
+                <p>Médico: ${cita.medico}</p>
+                <hr>
+            `;
+            listaHistorialCitas.appendChild(citaDiv);
+        });
+    }
+      
+}
+    </script>
+</body>
+</html>
